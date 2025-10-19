@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henry Jason - Web Designer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --accent-light: #ff6b7a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border: #2a2a3e;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .service-card {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.2);
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat-box:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .blog-card {
+            background: var(--secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(233, 69, 96, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 12px 30px;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1rem;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-circle {
+                width: 200px;
+                height: 200px;
+            }
+
+            .stat-box {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 1.5rem;
+            }
+
+            .stat-box:last-child {
+                border-bottom: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-opacity-95 backdrop-blur-md z-50" style="background-color: rgba(26, 26, 46, 0.95);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-2xl font-bold gradient-text">KOYTA</div>
+                <div class="hidden md:flex gap-8">
+                    <a href="#home" class="nav-link text-sm">HOME</a>
+                    <a href="#about" class="nav-link text-sm">ABOUT</a>
+                    <a href="#services" class="nav-link text-sm">SERVICES</a>
+                    <a href="#projects" class="nav-link text-sm">PROJECTS</a>
+                    <a href="#contact" class="nav-link text-sm">CONTACT</a>
+                </div>
+                <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6">I'm a Web Designer</h1>
+                    <p class="text-lg text-gray-400 mb-8 leading-relaxed">
+                        Crafting beautiful and functional digital experiences that help businesses grow and succeed in the modern world.
+                    </p>
+                    <div class="flex gap-4">
+                        <button class="btn-primary">Get Started</button>
+                        <button class="btn-secondary">Learn More</button>
+                    </div>
+                </div>
+                <div class="flex justify-center scroll-reveal" style="animation-delay: 0.2s;">
+                    <div class="hero-circle">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #e94560 0%, #ff6b7a 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem;">👨‍💼</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 bg-opacity-50" style="background-color: rgba(22, 33, 62, 0.3);">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal">
+                    <div style="width: 100%; height: 400px; background: linear-gradient(135deg, #e94560 0%, #ff6b7a 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 5rem;">📸</div>
+                </div>
+                <div class="scroll-reveal" style="animation-delay: 0.2s;">
+                    <h2 class="text-4xl font-bold mb-6">Hi there, I'm Henry Jason</h2>
+                    <p class="text-gray-400 mb-4 leading-relaxed">
+                        I'm a passionate web designer with over 5 years of experience creating stunning digital experiences. My expertise lies in combining beautiful design with seamless functionality.
+                    </p>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        I specialize in UI/UX design, web development, and brand identity. Every project I work on is crafted with attention to detail and a focus on delivering exceptional results.
+                    </p>
+                    <button class="btn-primary">Download CV</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title scroll-reveal">Why Choose My Services</h2>
+            <p class="section-subtitle scroll-reveal" style="animation-delay: 0.1s;">
+                I provide comprehensive design and development solutions tailored to your needs
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card scroll-reveal" style="animation-delay: 0.2s;">
+                    <div class="service-icon">🎨</div>
+                    <h3 class="text-xl font-bold mb-3">Graphic Design</h3>
+                    <p class="text-gray-400">Creating visually stunning designs that capture your brand's essence and engage your audience.</p>
+                </div>
+                <div class="service-card scroll-reveal" style="animation-delay: 0.3s;">
+                    <div class="service-icon">🌐</div>
+                    <h3 class="text-xl font-bold mb-3">Web Design</h3>
+                    <p class="text-gray-400">Building responsive and user-friendly websites that convert visitors into customers.</p>
+                </div>
+                <div class="service-card scroll-reveal" style="animation-delay: 0.4s;">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="text-xl font-bold mb-3">Trendy Work</h3>
+                    <p class="text-gray-400">Staying ahead of design trends to ensure your brand always looks modern and relevant.</p>
+                </div>
+                <div class="service-card scroll-reveal" style="animation-delay: 0.5s;">
+                    <div class="service-icon">🎯</div>
+                    <h3 class="text-xl font-bold mb-3">Easy to Customize</h3>
+                    <p class="text-gray-400">Flexible designs that can be easily customized to match your specific brand requirements.</p>
+                </div>
+                <div class="service-card scroll-reveal" style="animation-delay: 0.6s;">
+                    <div class="service-icon">🛠️</div>
+                    <h3 class="text-xl font-bold mb-3">Adobe Mastery</h3>
+                    <p class="text-gray-400">Expert proficiency in Adobe Creative Suite for professional-grade design work.</p>
+                </div>
+                <div class="service-card scroll-reveal" style="animation-delay: 0.7s;">
+                    <div class="service-icon">💻</div>
+                    <h3 class="text-xl font-bold mb-3">Web Development</h3>
+                    <p class="text-gray-400">Full-stack development services to bring your designs to life with clean, efficient code.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 px-4 border-t border-b" style="border-color: var(--border);">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-0">
+                <div class="stat-box scroll-reveal">
+                    <div class="stat-number">50+</div>
+                    <p class="text-gray-400">Projects Completed</p>
+                </div>
+                <div class="stat-box scroll-reveal" style="animation-delay: 0.1s;">
+                    <div class="stat-number">30+</div>
+                    <p class="text-gray-400">Happy Clients</p>
+                </div>
+                <div class="stat-box scroll-reveal" style="animation-delay: 0.2s;">
+                    <div class="stat-number">5+</div>
+                    <p class="text-gray-400">Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title scroll-reveal">Our Gallery Projects</h2>
+            <p class="section-subtitle scroll-reveal" style="animation-delay: 0.1s;">
+                Explore some of my recent work and creative projects
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="project-card scroll-reveal" style="animation-delay: 0.2s;">
+                    <div class="project-image">🎨</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Brand Identity</h3>
+                        <p class="text-gray-400 text-sm">Complete branding solution for modern startup</p>
+                    </div>
+                </div>
+                <div class="project-card scroll-reveal" style="animation-delay: 0.3s;">
+                    <div class="project-image">🌟</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">E-Commerce Platform</h3>
+                        <p class="text-gray-400 text-sm">Full-featured online shopping experience</p>
+                    </div>
+                </div>
+                <div class="project-card scroll-reveal" style="animation-delay: 0.4s;">
+                    <div class="project-image">📱</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Mobile App Design</h3>
+                        <p class="text-gray-400 text-sm">Intuitive mobile application interface</p>
+                    </div>
+                </div>
+                <div class="project-card scroll-reveal" style="animation-delay: 0.5s;">
+                    <div class="project-image">🎬</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Video Production</h3>
+                        <p class="text-gray-400 text-sm">Professional video content creation</p>
+                    </div>
+                </div>
+                <div class="project-card scroll-reveal" style="animation-delay: 0.6s;">
+                    <div class="project-image">🎯</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Marketing Campaign</h3>
+                        <p class="text-gray-400 text-sm">Integrated digital marketing strategy</p>
+                    </div>
+                </div>
+                <div class="project-card scroll-reveal" style="animation-delay: 0.7s;">
+                    <div class="project-image">🚀</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">SaaS Platform</h3>
+                        <p class="text-gray-400 text-sm">Enterprise software solution design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 px-4 bg-opacity-50" style="background-color: rgba(22, 33, 62, 0.3);">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title scroll-reveal">What Our Client Say?</h2>
+            <p class="section-subtitle scroll-reveal" style="animation-delay: 0.1s;">
+                Hear from satisfied clients about their experience working with me
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card scroll-reveal" style="animation-delay: 0.2s;">
+                    <div class="testimonial-avatar">😊</div>
+                    <p class="text-gray-400 mb-4">"Henry's design work transformed our brand completely. Highly professional and creative!"</p>
+                    <h4 class="font-bold">Sarah Johnson</h4>
+                    <p class="text-sm text-gray-500">CEO, Tech Startup</p>
+                </div>
+                <div class="testimonial-card scroll-reveal" style="animation-delay: 0.3s;">
+                    <div class="testimonial-avatar">😄</div>
+                    <p class="text-gray-400 mb-4">"Exceptional attention to detail and amazing communication throughout the project."</p>
+                    <h4 class="font-bold">Michael Chen</h4>
+                    <p class="text-sm text-gray-500">Founder, Digital Agency</p>
+                </div>
+                <div class="testimonial-card scroll-reveal" style="animation-delay: 0.4s;">
+                    <div class="testimonial-avatar">🤩</div>
+                    <p class="text-gray-400 mb-4">"Best designer I've worked with. Delivered beyond expectations and on time!"</p>
+                    <h4 class="font-bold">Emma Williams</h4>
+                    <p class="text-sm text-gray-500">Marketing Director</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title scroll-reveal">Easy Pricing Process</h2>
+            <p class="section-subtitle scroll-reveal" style="animation-delay: 0.1s;">
+                Transparent and flexible pricing options for all project sizes
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card scroll-reveal" style="animation-delay: 0.2s;">
+                    <h3 class="text-2xl font-bold mb-4">Starter</h3>
+                    <div class="text-3xl font-bold mb-6">$499<span class="text-lg text-gray-400">/project</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="text-gray-400">✓ 5 Design Concepts</li>
+                        <li class="text-gray-400">✓ 2 Revisions</li>
+                        <li class="text-gray-400">✓ Source Files</li>
+                    </ul>
+                    <button class="btn-secondary w-full">Get Started</button>
+                </div>
+                <div class="service-card scroll-reveal" style="animation-delay: 0.3s; border: 2px solid var(--accent);">
+                    <div style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; margin-bottom: 1rem; font-size: 0.75rem; font-weight: 600;">POPULAR</div>
+                    <h3 class="text-2xl font-bold mb-4">Professional</h3>
+                    <div class="text-3xl font-bold mb-6">$999<span class="text-lg text-gray-400">/project</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="text-gray-400">✓ 10 Design Concepts</li>
+                        <li class="text-gray-400">✓ Unlimited Revisions</li>
+                        <li class="text-gray-400">✓ Source Files</li>
+                        <li class="text-gray-400">✓ Priority Support</li>
+                    </ul>
+                    <button class="btn-primary w-full">Get Started</button>
+                </div>
+                <div class="service-card scroll-reveal" style="animation-delay: 0.4s;">
+                    <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
+                    <div class="text-3xl font-bold mb-6">Custom<span class="text-lg text-gray-400">/quote</span></div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="text-gray-400">✓ Unlimited Concepts</li>
+                        <li class="text-gray-400">✓ Unlimited Revisions</li>
+                        <li class="text-gray-400">✓ Dedicated Account Manager</li>
+                        <li class="text-gray-400">✓ 24/7 Support</li>
+                    </ul>
+                    <button class="btn-secondary w-full">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="py-20 px-4 bg-opacity-50" style="background-color: rgba(22, 33, 62, 0.3);">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="section-title scroll-reveal">Get Update From Blog</h2>
+            <p class="section-subtitle scroll-reveal" style="animation-delay: 0.1s;">
+                Latest insights and tips on design and web development
+            </p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="blog-card scroll-reveal" style="animation-delay: 0.2s;">
+                    <div class="blog-image">📝</div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-2">October 15, 2024</p>
+                        <h3 class="text-xl font-bold mb-3">Design Trends 2024</h3>
+                        <p class="text-gray-400 text-sm mb-4">Exploring the latest design trends that are shaping the digital landscape this year.</p>
+                        <a href="#" class="text-accent hover:text-accent-light transition">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card scroll-reveal" style="animation-delay: 0.3s;">
+                    <div class="blog-image">💡</div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-2">October 10, 2024</p>
+                        <h3 class="text-xl font-bold mb-3">Web Performance Tips</h3>
+                        <p class="text-gray-400 text-sm mb-4">Essential techniques to optimize your website's performance and user experience.</p>
+                        <a href="#" class="text-accent hover:text-accent-light transition">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card scroll-reveal" style="animation-delay: 0.4s;">
+                    <div class="blog-image">🎨</div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-500 mb-2">October 5, 2024</p>
+                        <h3 class="text-xl font-bold mb-3">Color Psychology</h3>
+                        <p class="text-gray-400 text-sm mb-4">Understanding how colors influence user behavior and design decisions.</p>
+                        <a href="#" class="text-accent hover:text-accent-light transition">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="section-title scroll-reveal">Let's Work Together</h2>
+            <p class="section-subtitle scroll-reveal" style="animation-delay: 0.1s; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Have a project in mind? I'd love to hear about it. Get in touch and let's create something amazing together.
+            </p>
+            <div class="scroll-reveal" style="animation-delay: 0.2s;">
+                <button class="btn-primary mb-8">Start a Project</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 mt-12">
+                <div class="scroll-reveal" style="animation-delay: 0.3s;">
+                    <h3 class="text-xl font-bold mb-4">Email</h3>
+                    <a href="mailto:hello@henryjason.com" class="text-gray-400 hover:text-accent transition">hello@henryjason.com</a>
+                </div>
+                <div class="scroll-reveal" style="animation-delay: 0.4s;">
+                    <h3 class="text-xl font-bold mb-4">Follow Me</h3>
+                    <div class="flex justify-center gap-4">
+                        <a href="#" class="text-gray-400 hover:text-accent transition">Twitter</a>
+                        <a href="#" class="text-gray-400 hover:text-accent transition">LinkedIn</a>
+                        <a href="#" class="text-gray-400 hover:text-accent transition">Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t py-8 px-4" style="border-color: var(--border);">
+        <div class="max-w-7xl mx-auto text-center text-gray-500 text-sm">
+            <p>&copy; 2025 Henry Jason. All rights reserved. | Designed & Developed with ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.querySelector('.mobile-menu');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
+        }
+
+        // Add active state to nav links on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPosition = window.scrollY + 100;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const navLink = document.querySelector(`a[href="#${section.id}"]`);
+
+                if (navLink) {
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navLink.style.color = 'var(--accent)';
+                    } else {
+                        navLink.style.color = 'var(--text-primary)';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
